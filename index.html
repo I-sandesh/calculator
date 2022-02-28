@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            /* background-color: rgb(224, 170, 170); */
+            background: radial-gradient(ellipse, black, rgb(46, 17, 46), black, green, black, red, aqua, orange, pink);
+            background-size: 1000% 1500%;
+            animation: radial 5s ease-in-out infinite;
+        }
+
+        @keyframes radial {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 50% 0%;
+            }
+
+            100% {
+                background-position: 0% 25%;
+            }
+        }
+
+        .container {
+            width: 60vw;
+            margin: 10vh auto 0 auto;
+            box-shadow: 0px 0px 43px 17px rgb(80, 69, 69);
+        }
+
+        #display {
+            text-align: right;
+            height: 70px;
+            padding: 16px 8px;
+            line-height: 70px;
+            font-size: 2rem;
+            color: linen;
+        }
+
+        .buttons {
+            display: grid;
+            /* background-color: rgb(175, 140, 140); */
+            background: linear-gradient(#ff0000, #f2000d, #e6001a, #d90026, #cc0033, #bf0040, #b2004c, #a60059, #990066, #8c0073, #800080, #73008c, #660099, #5900a6, #4d00b2, #4000bf, #3300cc, #2600d9, #1900e6, #0d00f2, #0000ff);
+            border-bottom: 2px solid rebeccapurple;
+            /* border-left: 2px solid ; */
+            grid-template-columns: 0.8fr 0.8fr 0.8fr 0.5fr;
+        }
+
+        .button {
+            /* border: 1px solid rgb(0, 10, 0); */
+            line-height: 100px;
+            text-align: center;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        #equal {
+            background: radial-gradient(ellipse, #ff0000, #f2000d, #e6001a, #d90026, #cc0033, #bf0040, #b2004c, #a60059, #990066, #8c0073, #800080, #73008c, #660099, #5900a6, #4d00b2, #4000bf, #3300cc, #2600d9, #1900e6, #0d00f2, #0000ff);
+            /* background-color: rgba(11, 63, 11, 0.911); */
+            /* background: linear-gradient(black,red,purple,black); */
+            animation: radial 3s ease-in infinite;
+            background-size: 200% 250%;
+            /* color: rgb(10, 10, 10); */
+        }
+        .button:hover {
+            background-color: rgba(1, 24, 26, 0.869);
+            color: white;
+            font-size: 30px;
+            transition: 2ms ease-in-out;
+        }
+        .a {
+            font-weight: 600;
+            font-family: sans-serif;
+            color: rgb(236, 202, 8);
+            font-size: 20px;
+            font-variant: small-caps;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="a">
+            <marquee behavior="alternate" direction="down" height="50px" width="98%" style="margin-top: 25px;">
+                <marquee behavior="alternate">
+                    A Simple Colorful Calculator 😃
+                </marquee>
+            </marquee>
+        </div>
+        <div class="container">
+            <div id="display"></div>
+            <div class="buttons">
+                <div class="button">C</div>
+                <div class="button">/</div>
+                <div class="button">*</div>
+                <div class="button">&crarr;</div>
+                <div class="button">7</div>
+                <div class="button">8</div>
+                <div class="button">9</div>
+                <div class="button">-</div>
+                <div class="button">4</div>
+                <div class="button">5</div>
+                <div class="button">6</div>
+                <div class="button">+</div>
+                <div class="button">1</div>
+                <div class="button">2</div>
+                <div class="button">3</div>
+                <div class="button">.</div>
+                <div class="button">(</div>
+                <div class="button">0</div>
+                <div class="button">)</div>
+                <div id="equal" class="button">=</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let display = document.getElementById('display');
+        let buttons = Array.from(document.getElementsByClassName('button'));
+        buttons.map(button => {
+            button.addEventListener('click', (e) => {
+                switch (e.target.innerText) {
+                    case 'C':
+                        display.innerText = '';
+                        break;
+                    case '=':
+                        try {
+                            display.innerText = eval(display.innerText);
+                        }
+                        catch {
+                            display.innerText = "Error";
+                        }
+                        break;
+                    case '↵':
+                        if (display.innerText) {
+                            display.innerText = display.innerText.slice(0, -1);
+                        }
+                        break;
+                    default:
+                        display.innerText += e.target.innerText;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
